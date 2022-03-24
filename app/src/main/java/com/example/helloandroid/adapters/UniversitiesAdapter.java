@@ -1,6 +1,7 @@
 package com.example.helloandroid.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.helloandroid.R;
+import com.example.helloandroid.acitivities.UniversityActivity;
 import com.example.helloandroid.pojo.DummyData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -42,15 +45,18 @@ public class UniversitiesAdapter extends RecyclerView.Adapter<UniversitiesAdapte
 
         DummyData dummyData=list.get(position);
 
-        Query query= FirebaseDatabase.getInstance().getReference("Universities").orderByChild("uniId").equalTo(dummyData.getUniId());
+        Query query= FirebaseDatabase.getInstance().getReference("Universities").orderByChild("aicteId").equalTo(dummyData.getAicteId());
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 holder.name.setText(dummyData.getName());
-                holder.collegeId.setText(dummyData.getUniId());
+                holder.collegeId.setText(dummyData.getAicteId());
                 holder.address.setText(dummyData.getAddress());
-                holder.imageView.setImageResource(R.drawable.aicte_header);
+                Picasso.get()
+                        .load(dummyData.getImg())
+                        .placeholder(R.drawable.aicte_header)
+                        .into(holder.imageView);
             }
 
             @Override
@@ -59,21 +65,34 @@ public class UniversitiesAdapter extends RecyclerView.Adapter<UniversitiesAdapte
             }
         });
 
-//        FirebaseDatabase.getInstance().getReference("Universities").child(dummyData.getId()).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                DummyData dummyData1= snapshot.getValue(DummyData.class);
-//                holder.name.setText(dummyData1.getName()+",,,");
-//                holder.collegeId.setText(dummyData1.getUniId()+"bn");
-//                holder.address.setText(dummyData1.getAddress()+"hgy");
-//                holder.imageView.setImageResource(R.drawable.aicte_header);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        holder.seeMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(context, UniversityActivity.class);
+                intent.putExtra("id", dummyData.getId());
+                intent.putExtra("aicteId", dummyData.getAicteId());
+                intent.putExtra("name", dummyData.getName());
+                intent.putExtra("address", dummyData.getAddress());
+                intent.putExtra("district", dummyData.getDistrict());
+                intent.putExtra("institutionType", dummyData.getInstitutionType());
+                String str="";
+                String str1="";
+                if (dummyData.isWomen()){
+                    str= "Yes";
+                }else{
+                    str= "No";
+                }
+                if (dummyData.isMinority()){
+                    str1= "Yes";
+                }else{
+                    str1= "No";
+                }
+                intent.putExtra("woman", str);
+                intent.putExtra("minority", str1);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -85,7 +104,7 @@ public class UniversitiesAdapter extends RecyclerView.Adapter<UniversitiesAdapte
     public class viewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
-        TextView collegeId, name, address;
+        TextView collegeId, name, address, seeMore;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -93,6 +112,7 @@ public class UniversitiesAdapter extends RecyclerView.Adapter<UniversitiesAdapte
             collegeId= itemView.findViewById(R.id.university_sample_college_id);
             name= itemView.findViewById(R.id.universities_sample_name);
             address= itemView.findViewById(R.id.universities_sample_address);
+            seeMore= itemView.findViewById(R.id.universities_sample_see_more);
         }
     }
 }

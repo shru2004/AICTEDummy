@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HelloAndroid">
         <activity
+            android:name=".acitivities.UniversityActivity"
+            android:exported="false" />
+        <activity
             android:name=".acitivities.MainActivity"
-            android:theme="@style/Theme.HelloAndroid.NoActionBar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.HelloAndroid.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

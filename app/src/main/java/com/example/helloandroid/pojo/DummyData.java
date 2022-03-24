@@ -2,7 +2,7 @@ package com.example.helloandroid.pojo;
 
 public class DummyData {
 
-    String uniId, id;
+    String id;
     String aicteId;
     String name;
     String address;
@@ -10,9 +10,9 @@ public class DummyData {
     boolean women, minority;
     String universityBoard;
     boolean closed;
+    String img;
 
-    public DummyData(String uniId, String id, String aicteId, String name, String address, String district, String state, String program, String level, String institutionType, boolean women, boolean minority, String universityBoard, boolean closed) {
-        this.uniId = uniId;
+    public DummyData(String id, String aicteId, String name, String address, String district, String state, String program, String level, String institutionType, boolean women, boolean minority, String universityBoard, boolean closed, String img) {
         this.id= id;
         this.aicteId = aicteId;
         this.name = name;
@@ -26,9 +26,18 @@ public class DummyData {
         this.minority = minority;
         this.universityBoard = universityBoard;
         this.closed = closed;
+        this.img= img;
     }
 
     public DummyData() {
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getId() {
@@ -37,14 +46,6 @@ public class DummyData {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getUniId() {
-        return uniId;
-    }
-
-    public void setUniId(String uniId) {
-        this.uniId = uniId;
     }
 
     public String getAicteId() {

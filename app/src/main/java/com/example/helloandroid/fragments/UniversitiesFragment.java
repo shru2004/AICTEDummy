@@ -52,105 +52,193 @@ public class UniversitiesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_universities, container, false);
 
-//        button= view.findViewById(R.id.submit);
-        uniRV= view.findViewById(R.id.universitiesRv);
-        list= new ArrayList<>();
-
-        UniversitiesAdapter universitiesAdapter= new UniversitiesAdapter(list, getContext());
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        uniRV.setLayoutManager(layoutManager);
-        uniRV.setNestedScrollingEnabled(false);
-        uniRV.setAdapter(universitiesAdapter);
-
-        FirebaseDatabase.getInstance().getReference("Universities").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    DummyData dummyData= dataSnapshot.getValue(DummyData.class);
-                    list.add(dummyData);
-                }
-                universitiesAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-//        button.setOnClickListener(new View.OnClickListener() {
+        button= view.findViewById(R.id.submit);
+//        uniRV= view.findViewById(R.id.universitiesRv);
+//        list= new ArrayList<>();
+//
+//        UniversitiesAdapter universitiesAdapter= new UniversitiesAdapter(list, getContext());
+//        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+//        uniRV.setLayoutManager(layoutManager);
+//        uniRV.setNestedScrollingEnabled(false);
+//        uniRV.setAdapter(universitiesAdapter);
+//
+//        FirebaseDatabase.getInstance().getReference("Universities").addValueEventListener(new ValueEventListener() {
 //            @Override
-//            public void onClick(View view) {
-////                DummyAutonomous dummyAutonomous= new DummyAutonomous();
-////                dummyAutonomous.setAutonomyTill(new Date().getTime()+"");
-////                dummyAutonomous.setConferedBy("XYZ");
-////
-////                DummyCourse dummyCourse= new DummyCourse();
-////                dummyCourse.setCourseId("102");
-////                dummyCourse.setCourseName("CO");
-////                dummyCourse.setEnrollment(122);
-////                dummyCourse.setLevelOfCourse("lol");
-////                dummyCourse.setClosed(true);
-////
-////                DummyData dummyData= new DummyData();
-////                dummyData.setAicteId("10002");
-////                dummyData.setAddress("Sion");
-////                dummyData.setDistrict("Mumbai");
-////                dummyData.setLevel(dummyCourse.getLevelOfCourse());
-////                dummyData.setInstitutionType("Public");
-////                dummyData.setName("VIT");
-////                dummyData.setState("Maharashtra");
-////                dummyData.setUniId("1002");
-////                dummyData.setUniversityBoard("MSBTE");
-////                dummyData.setClosed(true);
-////
-////                DummyFaculty dummyFaculty= new DummyFaculty();
-////                dummyFaculty.setFacultyId("100002");
-////                dummyFaculty.setFacultyName("Satish");
-////                dummyFaculty.setAppointmentType("Yooo");
-////                dummyFaculty.setDesignation("Sir");
-////                dummyFaculty.setGender("Male");
-////                dummyFaculty.setDateOfJoining(new Date().getDate()+"");
-////                dummyFaculty.setAppointmentType(".....");
-////
-////                DummyOtherApproval dummyOtherApproval= new DummyOtherApproval();
-////                dummyOtherApproval.setCourseId("401");
-////                dummyOtherApproval.setOnlineCourses(true);
-////                dummyOtherApproval.setApprovedIntake(5643);
-////                dummyOtherApproval.setSeats(231);
-////                dummyOtherApproval.setLevel(dummyCourse.getLevelOfCourse());
-////
-////                String key= FirebaseDatabase.getInstance().getReference("Universities").push().getKey();
-////                FirebaseDatabase.getInstance().getReference("Universities").child(key).setValue(dummyData).addOnCompleteListener(new OnCompleteListener<Void>() {
-////                    @Override
-////                    public void onComplete(@NonNull Task<Void> task) {
-////                        FirebaseDatabase.getInstance().getReference("Universities").child(key).child("Courses").push().setValue(dummyCourse).addOnCompleteListener(new OnCompleteListener<Void>() {
-////                            @Override
-////                            public void onComplete(@NonNull Task<Void> task) {
-////                               FirebaseDatabase.getInstance().getReference("Universities").child(key).child("Faculty").push().setValue(dummyFaculty).addOnCompleteListener(new OnCompleteListener<Void>() {
-////                                   @Override
-////                                   public void onComplete(@NonNull Task<Void> task) {
-////                                       FirebaseDatabase.getInstance().getReference("Universities").child(key).child("Other Approvals").push().setValue(dummyOtherApproval).addOnCompleteListener(new OnCompleteListener<Void>() {
-////                                           @Override
-////                                           public void onComplete(@NonNull Task<Void> task) {
-////                                               FirebaseDatabase.getInstance().getReference("Universities").child(key).child("Autonomous").push().setValue(dummyAutonomous).addOnCompleteListener(new OnCompleteListener<Void>() {
-////                                                   @Override
-////                                                   public void onComplete(@NonNull Task<Void> task) {
-////                                                       Toast.makeText(view.getContext(), "DONE......", Toast.LENGTH_SHORT).show();
-////                                                   }
-////                                               });
-////                                           }
-////                                       });
-////                                   }
-////                               });
-////                            }
-////                        });
-////                    }
-////                });
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                list.clear();
+//                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+//                    DummyData dummyData= dataSnapshot.getValue(DummyData.class);
+//                    list.add(dummyData);
+//                }
+//                universitiesAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
 //
 //            }
 //        });
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DummyAutonomous dummyAutonomous= new DummyAutonomous();
+                dummyAutonomous.setAutonomyTill(new Date().getTime()+"");
+                dummyAutonomous.setConferedBy("ABC");
+
+                DummyCourse dummyCourse= new DummyCourse();
+                dummyCourse.setCourseId("101");
+                dummyCourse.setCourseName("IF");
+                dummyCourse.setEnrollment(320);
+                dummyCourse.setLevelOfCourse("idk");
+                dummyCourse.setClosed(false);
+
+                DummyData dummyData= new DummyData();
+                dummyData.setAicteId("10001");
+                dummyData.setAddress("Wadala");
+                dummyData.setDistrict("Mumbai");
+                dummyData.setLevel(dummyCourse.getLevelOfCourse());
+                dummyData.setInstitutionType("Government");
+                dummyData.setName("VP");
+                dummyData.setState("Maharashtra");
+                dummyData.setUniversityBoard("AICTE");
+                dummyData.setClosed(false);
+
+                DummyFaculty dummyFaculty= new DummyFaculty();
+                dummyFaculty.setFacultyId("100001");
+                dummyFaculty.setFacultyName("Prerana");
+                dummyFaculty.setAppointmentType("Dev jano");
+                dummyFaculty.setDesignation("Professor");
+                dummyFaculty.setGender("Female");
+                dummyFaculty.setDateOfJoining(new Date().getDate()+"");
+                dummyFaculty.setAppointmentType("idc");
+
+                DummyOtherApproval dummyOtherApproval= new DummyOtherApproval();
+                dummyOtherApproval.setCourseId("403");
+                dummyOtherApproval.setNri(true);
+                dummyOtherApproval.setApprovedIntake(234);
+                dummyOtherApproval.setSeats(123);
+                dummyOtherApproval.setLevel(dummyCourse.getLevelOfCourse());
+
+                String key= FirebaseDatabase.getInstance().getReference("Universities").push().getKey();
+
+                FirebaseDatabase.getInstance().getReference()
+                        .child("Universities")
+                        .child(key)
+                        .setValue(dummyData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        FirebaseDatabase.getInstance().getReference()
+                                .child("Courses")
+                                .child(dummyCourse.getCourseId())
+                                .setValue(dummyCourse).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                FirebaseDatabase.getInstance().getReference()
+                                        .child("Universities")
+                                        .child(key)
+                                        .child("Courses")
+                                        .child(dummyCourse.getCourseId())
+                                        .setValue(true)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        FirebaseDatabase.getInstance().getReference()
+                                                .child("Faculties")
+                                                .child(dummyFaculty.getFacultyId())
+                                                .setValue(dummyFaculty)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        FirebaseDatabase.getInstance().getReference()
+                                                                .child("Universities")
+                                                                .child(key)
+                                                                .child("Faculties")
+                                                                .child(dummyFaculty.getFacultyId())
+                                                                .setValue(true)
+                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                        FirebaseDatabase.getInstance().getReference()
+                                                                                .child("Autonomous")
+                                                                                .child(dummyData.getAicteId())
+                                                                                .setValue(dummyAutonomous)
+                                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                    @Override
+                                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                                        FirebaseDatabase.getInstance().getReference()
+                                                                                                .child("Universities")
+                                                                                                .child(key)
+                                                                                                .child("Autonomous")
+                                                                                                .setValue(true)
+                                                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                                    @Override
+                                                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                                                        FirebaseDatabase.getInstance().getReference()
+                                                                                                                .child("Other Approval")
+                                                                                                                .child(dummyOtherApproval.getCourseId())
+                                                                                                                .setValue(dummyOtherApproval)
+                                                                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                                                    @Override
+                                                                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                                                                        FirebaseDatabase.getInstance().getReference()
+                                                                                                                                .child("Universities")
+                                                                                                                                .child(key)
+                                                                                                                                .child("Other Approvals")
+                                                                                                                                .child("NRI")
+                                                                                                                                .setValue(true)
+                                                                                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                                                                    @Override
+                                                                                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                                                                                        Toast.makeText(getContext(), "Finally done", Toast.LENGTH_SHORT).show();
+                                                                                                                                    }
+                                                                                                                                });
+                                                                                                                    }
+                                                                                                                });
+                                                                                                    }
+                                                                                                });
+                                                                                    }
+                                                                                });
+                                                                    }
+                                                                });
+                                                    }
+                                                });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+
+//                FirebaseDatabase.getInstance().getReference("Universities").child(key).setValue(dummyData).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        FirebaseDatabase.getInstance().getReference("Universities").child(key).child("Courses").push().setValue(dummyCourse).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                               FirebaseDatabase.getInstance().getReference("Universities").child(key).child("Faculty").push().setValue(dummyFaculty).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                   @Override
+//                                   public void onComplete(@NonNull Task<Void> task) {
+//                                       FirebaseDatabase.getInstance().getReference("Universities").child(key).child("Other Approvals").push().setValue(dummyOtherApproval).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                           @Override
+//                                           public void onComplete(@NonNull Task<Void> task) {
+//                                               FirebaseDatabase.getInstance().getReference("Universities").child(key).child("Autonomous").push().setValue(dummyAutonomous).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                                   @Override
+//                                                   public void onComplete(@NonNull Task<Void> task) {
+//                                                       Toast.makeText(view.getContext(), "DONE......", Toast.LENGTH_SHORT).show();
+//                                                   }
+//                                               });
+//                                           }
+//                                       });
+//                                   }
+//                               });
+//                            }
+//                        });
+//                    }
+//                });
+
+            }
+        });
 
         return view;
     }
