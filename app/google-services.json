@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "297763286753",
+    "project_id": "mpchart-ae649",
+    "storage_bucket": "mpchart-ae649.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297763286753:android:0b7d1870c6e971bb1a11a0",
+        "android_client_info": {
+          "package_name": "com.example.helloandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "297763286753-f3pvj1rtalhui45r7jl83hgus2oicf40.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ4HC-6UEH6etUdY6XEAkcMHrYfejbQag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "297763286753-f3pvj1rtalhui45r7jl83hgus2oicf40.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

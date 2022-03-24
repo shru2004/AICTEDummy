@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn= "navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Dashboard"/>
+        <item android:id="@+id/nav_universities"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Universities"/>
+        <item android:id="@+id/nav_otherApprovals"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Other Approvals"/>
+        <item android:id="@+id/nav_nba"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="NBA"/>
+        <item android:id="@+id/nav_autonomous"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Autonomous"/>
+        <item android:id="@+id/nav_faculties"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Faculties"/>
+        <item android:id="@+id/nav_graphCharts"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Graphs And Charts"/>
+        <item android:id="@+id/nav_closedCourses"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Closed Courses"/>
+        <item android:id="@+id/nav_closedInstitutes"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Closed Institues"/>
+        <item android:id="@+id/nav_unapproved"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Unapproved"/>
+
+    </group>
+
+</menu>
